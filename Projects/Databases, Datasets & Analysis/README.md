@@ -1,5 +1,8 @@
 -------------------------------------------------- Glossery of the Data & Analytics ----------------------------------------------
 ## Databases:
+
+Note: Some of these databases are originally Excel datasets that have been converted using addons into database formats to allow for the execution of SQL queries, these will be marked with (converted)3
+
 ## Datasets:
 
 - Analysis overview:
