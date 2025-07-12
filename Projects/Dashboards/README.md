@@ -17,13 +17,13 @@
 ## Infrastructure & Data Sources
 ### Publicly avaliable databases:
 
-- data.europa.eu (The official EU central repository for publicly available datasets)
+- https://data.europa.eu/ (The official EU central repository for publicly available datasets)
     Topics: Economy, Energy, Environment, Transport, COVID-19
 - www.data.gov.uk (UK's govemental open / publicly-avaialable datasets)
     Topics: Demographics, business stats, migration, crime, NHS, housing.
 - www.Kaggle.com (general opensource datasets)
     Topics: Massive variety, too many to list here.
-- data.worldbank.org (World bank's open data platfrom)
+- https://data.worldbank.org/ (World bank's open data platfrom)
     Topics: Country-level indicators such as GDP, inflation, education, health, etc.
 -www.imf.org and data-explorer.oecd.org.
     Topics: macroeconomic and Financial indicators and metrics.
