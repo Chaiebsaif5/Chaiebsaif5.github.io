@@ -25,7 +25,7 @@
     Topics: Massive variety, too many to list here.
 - https://data.worldbank.org/ (World bank's open data platfrom)
     Topics: Country-level indicators such as GDP, inflation, education, health, etc.
--www.imf.org and data-explorer.oecd.org.
+- www.imf.org and data-explorer.oecd.org.
     Topics: macroeconomic and Financial indicators and metrics.
 
 ### AI-generated databases:
