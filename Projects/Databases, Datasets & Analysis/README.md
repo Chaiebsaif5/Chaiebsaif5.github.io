@@ -5,9 +5,12 @@
 1. (Original language: French) Electric Vehicule charging points census in France. (CSV, XLSX)
 
 
-Note: Some of these databases are originally Excel datasets that have been converted using addons into database formats to allow for the execution of SQL queries, these will be marked with (converted).
+Note: 
+    - Some of these databases are originally CSV or Excel datasets that have been converted using addons into structured database formats to allow for the execution of SQL queries, these will be marked with (converted).
 
-- to view the data you might have to download the Excel / SQL / Original format as github doesn't support displaying them directly on their page.
+    - to view the data you might have to download the Excel / SQL / Original format as github doesn't support displaying them directly on their page.
+    
+    - Some of the datasets/bases have been zipped into winrar if they're too big as the max file capcity for a github upload in 25mb.
 
 -------------------------------------------------- General Info for all projects -------------------------------------------------
 ## Tools & Software Used
