@@ -11,6 +11,12 @@
 7. Visualising the story: Another skill that compliments the previous step is knowing how best to showcase each insight, making sure that its impact is fully absorbed and understood by the audience, while also combining all the insights visually, like pieces of a puzzle, to tell the full story we unearthed throughout this process.
 
 -------------------------------------------------- General Info for all projects -------------------------------------------------
+## Projects list
+
+1. Full-stack EV Infrastructure Market Analysis project using SQL/Excel + Power BI/Tableau (French to English)
+
+
+
 ## Tools & Software Used
 
 - Power BI
