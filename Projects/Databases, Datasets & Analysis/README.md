@@ -1,11 +1,13 @@
 -------------------------------------------------- Glossery of the Data & Analytics ----------------------------------------------
-## Databases:
 
-Note: Some of these databases are originally Excel datasets that have been converted using addons into database formats to allow for the execution of SQL queries, these will be marked with (converted)3
+## Databases / Datasets:
 
-## Datasets:
+1. (Original language: French) Electric Vehicule charging points census in France. (CSV, XLSX)
 
-- Analysis overview:
+
+Note: Some of these databases are originally Excel datasets that have been converted using addons into database formats to allow for the execution of SQL queries, these will be marked with (converted).
+
+- to view the data you might have to download the Excel / SQL / Original format as github doesn't support displaying them directly on their page.
 
 -------------------------------------------------- General Info for all projects -------------------------------------------------
 ## Tools & Software Used
