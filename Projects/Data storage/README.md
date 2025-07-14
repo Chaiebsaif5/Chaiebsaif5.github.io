@@ -2,7 +2,12 @@
 
 ## Databases / Datasets:
 
-1. (Original language: French) Electric Vehicule charging points census in France. (CSV, XLSX, DB)
+1. Electric Vehicule charging points census in France. (CSV, XLSX, DB)
+    - Original file name: consolidation-etalab-schema-irve-statique-v-2.3.1-20250713
+    - Language: French
+    - Source: data.europa.eu
+    - Link: https://data.europa.eu/data/datasets/5448d3e0c751df01f85d0572?locale=en
+    - Date downloaded: 12/07/2025
 
 
 Note: 
@@ -46,7 +51,6 @@ Note:
 - Claude
 - Gemini
 
-(Please note that I may have had to tweak them a little using my own previous knowledge and work experience to make them make sense in case the AI output was too unrealistic).
 
 ==> If there's a dataset you would like to have visualised that isn't already let me know and I'll be more than happy to do so for you.
 
