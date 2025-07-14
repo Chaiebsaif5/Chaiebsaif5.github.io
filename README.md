@@ -1,4 +1,4 @@
-# Welcome to my portfolio!
+# Welcome to my portfolio! (Work in progress)
 
 If you're reading this my hope is that you're a recruiter who's at least mildly intrested in my application or profil, so thank you for taking the time to explore it.
 
