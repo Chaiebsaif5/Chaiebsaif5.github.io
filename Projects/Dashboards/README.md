@@ -9,6 +9,7 @@
 - GitHub
 - Visual Studio Code
 - Excel
+- DB Browser for SQLite
 
 ## Programming Languages & Libraries
 - **Languages**: Python, SQL

@@ -2,7 +2,7 @@
 
 ## Databases / Datasets:
 
-1. (Original language: French) Electric Vehicule charging points census in France. (CSV, XLSX)
+1. (Original language: French) Electric Vehicule charging points census in France. (CSV, XLSX, DB)
 
 
 Note: 
@@ -20,6 +20,7 @@ Note:
 - GitHub
 - Visual Studio Code
 - Excel
+- DB Browser for SQLite
 
 ## Programming Languages & Libraries
 - **Languages**: Python, SQL
