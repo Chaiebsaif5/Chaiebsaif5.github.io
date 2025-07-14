@@ -18,6 +18,7 @@ This project contains all the remaining items and skills that could be potential
 
 Note: Each project has a README file that covers the technical stack used in it which will include all programs and dependencies you will need to have on you computer to run the files in that project as well as the coding languages, IDEs ect that I used to create and showcase them, I included that latter for your references.
 
+-- The reason for this structure is to try and group items by skill rather than project for recruiters to quickly find examples of what skill they're looking for --
 
 ## License
 This project is licensed under the [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) license.  
