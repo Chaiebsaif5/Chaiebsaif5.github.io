@@ -22,8 +22,9 @@ To answer all these questions, I will be calculating the following set of metric
 5. (if data is available) how good of a proxy is charging points distribution for EV ownership.
 6. Quick overview of what plugs serve which EV models and contrast plug availability to recent EV ownership / sales data in France to calculate best served models and least served models.
 
-==> Project these metrics into the future (1 year, 2 years, 5 years).
 
 Finally: Display everything in a PowerBI + Tableau dashboard that provides a quick and easy way to absorb the findings and drill into the data / metrics.
 
-Note: I will be doing this exercise twice, once via Excel, and again via SQL (showcasing formulas) to demonstrate my technical capacity.
+Note:
+    - I will be doing this exercise twice, once via Excel, and again via SQL (showcasing formulas) to demonstrate my technical capacity.
+    - I have included a column dictionary that translates french column names into English for non-french speakers, It can be found in the Cleaned Excel file in a seperate tab.

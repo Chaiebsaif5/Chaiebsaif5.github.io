@@ -2,7 +2,7 @@
 
 ## The process (ETL):
 
-1. Checking the data's reliability: some datasets are trustworthy by proxy of their sources (such as the EU data center and the UK government open data project), but work is still necessary to insure that if the project will use only a subset of the data (due to size constraints for example) that the sample be reprensative of the population and free from bias.
+1. Checking the data's reliability: some datasets are trustworthy by proxy of their sources (such as the EU data center and the UK government open data project), but work is still necessary to insure that if the project will use only a subset of the data (due to size constraints for example) that the sample be representative of the population and free from bias.
 2. Cleaning the data: Checking for duplicate entries, erros, misinputs and deleting them.
 3. Defining and claculating the metrics: Each project has an attached word file within it's folder that defines each metric calculated, why is it of interest and what formula is used to obtain it.
 4. Advanced data work: If macros were created as part of the project, or if a SQL expression optimisation process was undertaken, it will also be mentioned in the word file. With some projects this subprocess will not be truly necessary to obtain the results but will still be included just to showcase the skills associated with it.
