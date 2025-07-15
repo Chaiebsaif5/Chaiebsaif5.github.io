@@ -8,9 +8,10 @@ The data types in this dataset were not too complicated luckily, mainly text str
 However, it quickly became apparent that there was barely any standardisation in key columns entries, such as Column AD "Tarification" which captures the charging points costs or the "horaires" column AG which displays the availability time for each charging point. There were also a lot of missing entries for random columns such as plug types (columns U to Y).
 
 I made the decision that all rows missing data in key columns (such as IDs, Costs, Time of availability) will be deleted from the dataset. The columns I deemed critical for this project are the following:
-	- Column A: Operator name
-	- Column P: number of charging points.
-	- Column R: Local charging point ID
+	- Column A and D: Manager name and Operator name, considered missing if both are empty. -- Removed
+	- Column P: number of charging points. -- No missing data
+	- Column R: Local charging point ID. -- Removed
+     Instead of directly removing the empty cells, I checked other ID columns first in case they had data in them that can be copied over to here, as it's quite clear that ids match across all 3 columns, the rows will be removed only if there are no ID entries in any of the columns. 
 	- Column T: charging power.
 	- Columns U through Y: Plug Types, only if data is missing from ALL at once.
 	- Column Z and Column AD: Column Z displays if it's true or false that the station is Free (cost-wise). Column AD displays the actual monetary cost.
