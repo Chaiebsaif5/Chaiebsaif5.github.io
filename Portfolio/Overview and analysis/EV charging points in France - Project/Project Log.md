@@ -1,43 +1,115 @@
 1. Downloaded and converted the original CSV data into Excel and SQL format.
 2. Cleaned the data:
 
-	a. Checking for errors, missing entries, correct data types and so on.
+ 	a. Checking for errors, missing entries, correct data types and so on.
 
 The data types in this dataset were not too complicated luckily, mainly text strings and numbers (Real) and a few date entries, only one column contained a "custom" data format, column av "created_at" which contains both a date + time.
 
 However, it quickly became apparent that there was barely any standardisation in key columns entries, such as Column AD "Tarification" which captures the charging points costs or the "horaires" column AG which displays the availability time for each charging point. There were also a lot of missing entries for random columns such as plug types (columns U to Y).
 
 I made the decision that all rows missing data in key columns (such as IDs, Costs, Time of availability) will be deleted from the dataset. The columns I deemed critical for this project are the following:
-	- Column A and D: Manager name and Operator name, considered missing if both are empty. -- 348 rows removed
-	- Column P: number of charging points. -- No missing data
-	- Column R: Local charging point ID. -- 48934 rows removed
-	Instead of directly removing the empty cells, I checked the other ID column "I" first in case it had data in them that can be copied over to here, thereby giving the Charging point the same ID at it's local station, it proved to be possible for some entries but not all, also, stations with an ID of 0 were also considered as empty and removed.
-	- Column T: charging power. -- No missing data.
-	- Columns U through Y: Plug Types, only if data is missing from ALL at once. -- 1282 rows removed
-	- Column Z and Column AD: Column Z displays if it's true or false that the station is Free (cost-wise). Column AD displays the actual monetary cost. Removed entries only if both are empty, backfilled the Boolean column if actual cost data is present in column AD. -- 3980 rows removed
+ 	- Column A and D: Manager name and Operator name, considered missing if both are empty. -- 348 rows removed
+ 	- Column P: number of charging points. -- No missing data
+ 	- Column R: Local charging point ID. -- 48934 rows removed
+ 	Instead of directly removing the empty cells, I checked the other ID column "I" first in case it had data in them that can be copied over to here, thereby giving the Charging point the same ID at it's local station, it proved to be possible for some entries but not all, also, stations with an ID of 0 were also considered as empty and removed.
+ 	- Column T: charging power. -- No missing data.
+ 	- Columns U through Y: Plug Types, only if data is missing from ALL at once. -- 1282 rows removed
+ 	- Column Z and Column AD: Column Z displays if it's true or false that the station is Free (cost-wise). Column AD displays the actual monetary cost. Removed entries only if both are empty, backfilled the Boolean column if actual cost data is present in column AD. -- 3980 rows removed
 
-	==> When attempting to check items with no exact cost but marked as Not Free (False) on column Z, I found that it affected a massive chunk of the data (71382 rows), removing this large amount of rows, in addition t the previously removed observations on column R may inaccurately skew geographical analysis on the distribution of the charging points across the French territory, as such, I concluded that I will be running 2geographical analyses on this project, one of the perfectly clean data, and another with the inclusion of the imperfect rows that still include geographical information, I will compare both to see if I can spot a location related cause for this data imperfection. -- 71382 Rows removed
+ 	==> When attempting to check items with no exact cost but marked as Not Free (False) on column Z, I found that it affected a massive chunk of the data (71382 rows), removing this large amount of rows, in addition t the previously removed observations on column R may inaccurately skew geographical analysis on the distribution of the charging points across the French territory, as such, I concluded that I will be running 2geographical analyses on this project, one of the perfectly clean data, and another with the inclusion of the imperfect rows that still include geographical information, I will compare both to see if I can spot a location related cause for this data imperfection. -- 71382 Rows removed
 
-	- Columns AE to AG, Columns AJ and AM: All vital to measure "accessibility" in terms of availability in time and the need for reservation before hand ect. as well as the date the station came online. 	- No missing data in columns AJ to AH.
-			- For the date of coming online, a lot of rows are missing this observation (Column AM). However, we do have access to the date the agents visited the point and provided the measurements of this dataset, It is logical to therefore assume that the station was in operation at that date or before and hence it could be used as a good proxy (Column AO). It was also observed at this point that a few dates entered are erroneous (1930) and these rows were removed -- 2 Rows
-			
-	- Column AT: who owns the data for that particular charging point. This column is vitale for Ethical reasons. -- No missing rows
+ 	- Columns AE to AG, Columns AJ and AM: All vital to measure "accessibility" in terms of availability in time and the need for reservation before hand ect. as well as the date the station came online. 	- No missing data in columns AJ to AH.
+ 			- For the date of coming online, a lot of rows are missing this observation (Column AM). However, we do have access to the date the agents visited the point and provided the measurements of this dataset, It is logical to therefore assume that the station was in operation at that date or before and hence it could be used as a good proxy (Column AO). It was also observed at this point that a few dates entered are erroneous (1930) and these rows were removed -- 2 Rows
+ 
+ 	- Column AT: who owns the data for that particular charging point. This column is vitale for Ethical reasons. -- No missing rows
 
 
 Good data governance practices suggest that instead of actually deleting the rows with missing data that they should be moved into a separate tab, this is particularly useful to give feedback to the original dataset creators but also to perform studies on edgecases in case we wanted to unearth some insights into "why" these rows are not properly filled in.
 
 
-	- For Column A and D: if the Manager name is empty yet the Operator name is present, The operator will be considered as the manager for the purposes of our study, hence I backfilled the empty column A cells from column D.
+ 	- For Column A and D: if the Manager name is empty yet the Operator name is present, The operator will be considered as the manager for the purposes of our study, hence I backfilled the empty column A cells from column D.
 
 
-	b. Checking for duplicates: 
+b. Checking for duplicates:
 
-This dataset contains 2 columns of IDs, one for each local station (overall) located in column J and one for each individual charging point located in column R. Although one would expect stations often hosts multiple charging points and hence duplicate IDs should be expected, this is not the case with this particular dataset as the authors made sure that even for the same station unique IDs are given corresponding to the charging point IDs, however, it's worth checking for duplicates anyways as a good practice. 
+This dataset contains 2 columns of IDs, one for each local station (overall) located in column J and one for each individual charging point located in column R. Although one would expect stations often hosts multiple charging points and hence duplicate IDs should be expected, this is not the case with this particular dataset as the authors made sure that even for the same station unique IDs are given corresponding to the charging point IDs, however, it's worth checking for duplicates anyways as a good practice.
 
 To do so, first I sorted the CP (charging point) ID column for A to Z, I then created a column next to it titled "Duplicate Check" (column s) with a simple formula of (if(R1=R2,1,0)), matching IDs will be marked as 1 while unique ones will receive a value of 0. I'm happy to report that this dataset contained purely unique IDs without any duplicates, I then did the same for the Unique station IDs in column J, the check was done in the added column H called station duplicates check.
 
-	C. Standardising data:
+C. Standardising data:
 
 The Critical columns identified in a. need to have their data standardised , having reviewed them, I identified that columns AD,AG,... needed extra work to make sure their entries all followed the same format. This is a complicated task, hence, to achieve this I decided to deploy the following advanced tools.
 
-	- Column AD: if marked as Free in Column Z, I standardised the monetary value to €0. -- 127 Entries
+ 	- Column R: some points were classified by the original data authors as "non  concerné" translating as "irrelevant", these were removed from the dataset as potential unintentional additions by the data collection agents. -- 54 rows removed.
+ 	- Column AG: "Horaires" or working hours entries had both 24/7 entries, stations that are open only on certain days on certain hours, and others have only hours mentioned for them without any additional context, as such I decided to standardise this column into 4 categories: "24/7", "Time-limited" for those limited in hours, "Days-limited" for those limited in days but not in hours and "Restricted Schedule" for those limited by both. These results are now housed in column AI.
+ 	==> To accomplish this task I decided to use some advanced Excel logic to showcase Excel capabilities, here's the formula used:
+ 
+"=LET(
+    text, LOWER(AG2),
+    is_24_7, OR(ISNUMBER(SEARCH({"24/7","24h","00:00"}, text))),
+    has_day, OR(ISNUMBER(SEARCH({"mo","tu","we","th","fr","sa","su"}, text))),
+    has_time, OR(ISNUMBER(SEARCH({":","-"}, text))),
+    IFS(
+        is_24_7, "24/7",
+        AND(has_day, has_time), "Limited Hours & Days",
+        has_day, "Limited Days Only",
+        has_time, "Limited Hours Only",
+        TRUE, "Unknown"
+    )
+)"
+
+ 	- Column AD: By far needs the most work due to the variety of cells, firstly, if marked as Free in Column Z, I standardised the monetary value to €0. -- 127 Entries
+Secondly, to extract the actual price per Kw/H I have to use PowerQuery, this was done as follows:
+
+
+ 		Powerquery Script:
+let
+    / 1. Loading
+
+    Source = Excel.CurrentWorkbook(){[Name="consolidation_etalab_schema_irve_statique_v_2_3_1_20250712"]}[Content],
+
+    / 2. This changes tarification to text
+
+    ChangedType = Table.TransformColumnTypes(Source, {{"tarification", type text}}),
+
+    / 3. Add PriceString = tarification when it contains “€” (else null)
+
+    AddedPriceString = Table.AddColumn(
+        ChangedType,
+        "PriceString",
+        each if Text.Contains([tarification], "€") then [tarification] else null,
+        type text
+    ),
+
+    / 4. Standardising the decimal separator:
+    StandardizedDecimal = Table.TransformColumns(
+        AddedPriceString,
+        {{"PriceString", each Text.Replace(_, ",", "."), type text}}
+    ),
+
+    / 5. Extracting everything before the “€” into a new column
+
+    ExtractedRaw = Table.AddColumn(
+        StandardizedDecimal,
+        "RawPriceText",
+        each if [PriceString] = null
+             then null
+             else Text.BeforeDelimiter([PriceString], "€"),
+        type text
+    ),
+
+    / 6. Trimming any stray spaces
+
+    TrimmedPrice = Table.TransformColumns(
+        ExtractedRaw,
+        {{"RawPriceText", Text.Trim, type text}}
+    ),
+
+    / 7. Convert text to a number
+
+    FinalTypes = Table.TransformColumnTypes(
+        TrimmedPrice,
+        {{"RawPriceText", type number}}
+    )
+in
+    FinalTypes
