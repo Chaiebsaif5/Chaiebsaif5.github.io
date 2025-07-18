@@ -59,57 +59,112 @@ The Critical columns identified in a. need to have their data standardised , hav
 )"
 
  	- Column AD: By far needs the most work due to the variety of cells, firstly, if marked as Free in Column Z, I standardised the monetary value to €0. -- 127 Entries
-Secondly, to extract the actual price per Kw/H I have to use PowerQuery, this was done as follows:
+Secondly, to extract the actual price per Kw/H I have to use PowerQuery due to the complexity of the entries in the column, this was done as follows:
+
+    ==> To robustly parse this data, I deployed a sophisticated Power Query script (below). The process was iterative (5 iterations of the code below) due to how many "edge cases" and unique entry types were present in the column
 
 
  		Powerquery Script:
+"
 let
-    / 1. Loading
+    // 1. Load your source table. This name should match your actual table name.
+    Source = Excel.CurrentWorkbook(){[Name="consolidation_etalab_schema_irve_statique_v_2_3_1_20250712"]}[Content],
 
-    Source = Excel.CurrentWorkbook(){[Name="consolidation_etalab_schema_irve_statique_v_2_3_1_20250712"]}[Content],
+    // 2. Add a new 'Tarif_Cleaned' column to safely work with the data.
+    // This step handles nulls, lowercasing, standardizing decimal points, and converting centimes.
+    Add_Cleaned_Column = Table.AddColumn(Source, "Tarif_Cleaned", each
+        let
+            // Start with the original 'tarification' field, but handle potential errors/nulls
+            rawText = try Text.From([tarification]) otherwise "",
+            
+            // Basic cleaning: lowercase and trim whitespace
+            lowerTrimmed = Text.Lower(Text.Trim(rawText)),
+            
+            // Standardize decimal separators from comma to dot
+            dotFixed = Text.Replace(lowerTrimmed, ",", "."),
+            
+            // Robustly find and replace "cts" patterns (e.g., "49cts", "36 cts/kwh") with euro values
+            // Regex: (\d+(?:\.\d+)?) captures the number, [ ]?cts matches an optional space then "cts"
+            centsConverted = Text.RegexReplace(
+                dotFixed,
+                "(\d+(?:\.\d+)?)[ ]?cts",
+                each try Text.From(Number.FromText(_{1}) / 100) otherwise _{0}
+            )
+        in
+            centsConverted
+    , type text),
 
-    / 2. This changes tarification to text
+    // 3. Extract all valid numeric parts from the 'Tarif_Cleaned' column into a list
+    Add_Numeric_Tokens = Table.AddColumn(Add_Cleaned_Column, "Tokens", each
+        let
+            txt = [Tarif_Cleaned],
+            // Split the text by any character that is NOT a digit or a period.
+            // This isolates number-like strings.
+            delimiters = "€/\\-– ,;:()abcdefghijklmnopqrstuvwxyz+",
+            parts = Text.SplitAny(txt, delimiters),
+            
+            // Select only the parts that are valid numbers and convert them
+            numbers = List.Transform(
+                List.Select(parts, each Value.Is(try Number.FromText(_) otherwise null, type number)),
+                each Number.FromText(_)
+            )
+        in
+            numbers
+    , type list),
 
-    ChangedType = Table.TransformColumnTypes(Source, {{"tarification", type text}}),
+    // 4. Create Price_1, Price_2, and Price_3 columns from the tokens list
+    Add_Price1 = Table.AddColumn(Add_Numeric_Tokens, "Price_1", each try [Tokens]{0} otherwise null, type number),
+    Add_Price2 = Table.AddColumn(Add_Price1, "Price_2", each try [Tokens]{1} otherwise null, type number),
+    Add_Price3 = Table.AddColumn(Add_Price2, "Price_3", each try [Tokens]{2} otherwise null, type number),
 
-    / 3. Add PriceString = tarification when it contains “€” (else null)
+    // 5. Add 'Has_Augmentation' column by checking for a "+" symbol
+    Add_Augmentation_Flag = Table.AddColumn(Add_Price3, "Has_Augmentation", each Text.Contains([Tarif_Cleaned], "+"), type logical),
 
-    AddedPriceString = Table.AddColumn(
-        ChangedType,
-        "PriceString",
-        each if Text.Contains([tarification], "€") then [tarification] else null,
-        type text
-    ),
+    // 6. Add 'Tarif_Type' classification based on the number of prices and the augmentation flag
+    Add_Tarif_Type = Table.AddColumn(Add_Augmentation_Flag, "Tarif_Type", each
+        let
+            priceCount = List.Count([Tokens]),
+            hasPlus = [Has_Augmentation]
+        in
+            if priceCount = 0 then "Unclassified"
+            else if hasPlus then "Tiered with augmentation"
+            else if priceCount = 1 then "Simple fixed cost"
+            else "Time-based pricing" 
+    , type text),
 
-    / 4. Standardising the decimal separator:
-    StandardizedDecimal = Table.TransformColumns(
-        AddedPriceString,
-        {{"PriceString", each Text.Replace(_, ",", "."), type text}}
-    ),
+    // 7. Add 'Basis of cost calculation' column by checking for keywords
+    Add_Cost_Basis = Table.AddColumn(Add_Tarif_Type, "Basis of cost calculation", each
+        let
+            txt = [Tarif_Cleaned]
+        in
+            if Text.Contains(txt, "kwh") then "cost calculated per kwh consumed"
+            else if Text.Contains(txt, "min") then "cost calculated per minute of usage"
+            else if Text.Contains(txt, "heure") or Text.Contains(txt, "/h") then "cost calculated per hour of usage"
+            else if List.Count([Tokens]) > 0 then "Unclassified unit"
+            else null
+    , type text),
 
-    / 5. Extracting everything before the “€” into a new column
+    // 8. Add 'Occupation_charge' flag by checking for the keyword "occupation"
+    Add_Occupation_Charge = Table.AddColumn(Add_Cost_Basis, "Occupation_charge", each
+        if Text.Contains([Tarif_Cleaned], "occupation") then "Occupation charge detected" else null
+    , type text),
 
-    ExtractedRaw = Table.AddColumn(
-        StandardizedDecimal,
-        "RawPriceText",
-        each if [PriceString] = null
-             then null
-             else Text.BeforeDelimiter([PriceString], "€"),
-        type text
-    ),
+    // 9. Final cleanup: remove the intermediate columns we don't need in the final output
+    Final_Table = Table.RemoveColumns(Add_Occupation_Charge, {"Tarif_Cleaned", "Tokens"})
 
-    / 6. Trimming any stray spaces
-
-    TrimmedPrice = Table.TransformColumns(
-        ExtractedRaw,
-        {{"RawPriceText", Text.Trim, type text}}
-    ),
-
-    / 7. Convert text to a number
-
-    FinalTypes = Table.TransformColumnTypes(
-        TrimmedPrice,
-        {{"RawPriceText", type number}}
-    )
 in
-    FinalTypes
+    Final_Table
+"
+
+This script first isolates up to three distinct price points from each entry. It also detects whether a price is an add-on charge by checking for a "+" symbol. Based on this, it classifies each charging point's pricing model into one of three categories:
+
+        - "Simple fixed cost": For entries with only one price.
+        - "Time-based pricing": For entries with multiple, distinct prices that vary based on conditions like time of day.
+        - "Tiered with augmentation": For prices structured as a base fee plus an add-on (e.g., "base price € + add-on €").
+
+        These new classifications are necessary for visualising the true cost landscape across the french departments. The results of this process are now located in columns BE through BH.
+
+The script also creates two additional classification columns:
+-column BI: Determines if the cost is calculated per minute/hour of use or per kWh consumed. 
+
+-column BJ: specifically flags any entry that mentions an "occupation" charge—a fee for occupying the charging bay beyond the actual charging session.
