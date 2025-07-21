@@ -10,10 +10,11 @@
 6. Writing the story: What do the metrics tell us? this is the part where I weave the metrics together to piece together the bigger picture in a clear and easy-to-understand narrative but also to unearth relationships that are not so obvious at first glance. This analysis is available in a word document within this folder here for each project.  (This is personally the most fun part of the process for me)
 7. Visualising the story: Another skill that compliments the previous step is knowing how best to showcase each insight, making sure that its impact is fully absorbed and understood by the audience, while also combining all the insights visually, like pieces of a puzzle, to tell the full story we unearthed throughout this process.
 
+==> All projects contain a "Project Log.md" file that chronologically captures all the steps taken and issues encountered, with plenty of details regarding the solutions and processes used, the techniques deployed ect.
 -------------------------------------------------- General Info for all projects -------------------------------------------------
 ## Projects list
 
-1. Full-stack EV Infrastructure Market Analysis project using SQL/Excel + Power BI/Tableau (French to English)
+1. Full-stack EV Infrastructure Market Analysis project using Excel + Power BI (French to English)
 
 
 

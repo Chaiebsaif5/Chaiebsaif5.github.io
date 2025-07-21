@@ -1,7 +1,7 @@
-1. Downloaded and converted the original CSV data into Excel and SQL format.
-2. Cleaned the data:
+## 1. Downloaded and converted the original CSV data into Excel and SQL format.
+## 2. Cleaned the data:
 
- 	a. Checking for errors, missing entries, correct data types and so on.
+# a. Checking for errors, missing entries, correct data types and so on.
 
 The data types in this dataset were not too complicated luckily, mainly text strings and numbers (Real) and a few date entries, only one column contained a "custom" data format, column av "created_at" which contains both a date + time.
 
@@ -30,13 +30,13 @@ Good data governance practices suggest that instead of actually deleting the row
  	- For Column A and D: if the Manager name is empty yet the Operator name is present, The operator will be considered as the manager for the purposes of our study, hence I backfilled the empty column A cells from column D.
 
 
-b. Checking for duplicates:
+# b. Checking for duplicates:
 
 This dataset contains 2 columns of IDs, one for each local station (overall) located in column J and one for each individual charging point located in column R. Although one would expect stations often hosts multiple charging points and hence duplicate IDs should be expected, this is not the case with this particular dataset as the authors made sure that even for the same station unique IDs are given corresponding to the charging point IDs, however, it's worth checking for duplicates anyways as a good practice.
 
 To do so, first I sorted the CP (charging point) ID column for A to Z, I then created a column next to it titled "Duplicate Check" (column s) with a simple formula of (if(R1=R2,1,0)), matching IDs will be marked as 1 while unique ones will receive a value of 0. I'm happy to report that this dataset contained purely unique IDs without any duplicates, I then did the same for the Unique station IDs in column J, the check was done in the added column H called station duplicates check.
 
-C. Standardising data:
+# C. Standardising data:
 
 The Critical columns identified in a. need to have their data standardised , having reviewed them, I identified that columns AD,AG,... needed extra work to make sure their entries all followed the same format. This is a complicated task, hence, to achieve this I decided to deploy the following advanced tools.
 
@@ -168,3 +168,31 @@ The script also creates two additional classification columns:
 -column BI: Determines if the cost is calculated per minute/hour of use or per kWh consumed. 
 
 -column BJ: specifically flags any entry that mentions an "occupation" charge—a fee for occupying the charging bay beyond the actual charging session.
+
+
+## 3. Defining and calculating the metrics:
+
+The first step in our exploratory data analysis is to define a set of metrics that encapsulates key information communicated by our dataset. These metrics are oriented towards business uses, whether they be already estabilished in the French EV market or are exploring it, the French government but also of interest to private EV-owners in France, though the latter 2 are not the main stakeholders targeted in this project.
+
+# a. Market Share breakdown:
+
+As explained in the cleaning phase of the data, Each individual single charging station has a manager, an operator, the commercial network name (who's logo is displayed in the station's banner) and finally a Data owner, in many cases, a single company or private individual can occupy and play several of these roles at once.
+
+Anothor consideration is that the share of the market calculated differs significantly based on whether we're caluclating from a station ownership point of vue or from the number of Charging points offered. For the latter, it may not make sense to calculate the market share for individual operators or station managors if the result is too granular.
+
+    - Ownership breakdown (Top 10):
+
+     A.1.From Station ownership PoV:
+
+     - By commerical network.
+     - By manager.
+     - By operator.
+     - By data owner.
+
+     A.2. From Number of charging points POV:
+
+     - By commerical network.
+     - By manager.
+     - By operator.
+     - By data owner.
+

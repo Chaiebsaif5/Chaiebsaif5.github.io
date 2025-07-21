@@ -12,6 +12,8 @@ Starting off from these ground observations we will try to glean insights into:
 ==> How does the market share breakdown looks like for the top 5/10 companies, and what metrics are driving this share distribution.
 ==> How will the EV charging station landscape evolve in the next few years?
 
+These metrics are oriented towards business uses, whether the company is already estabilished in the French EV charging market or are exploring it, the French government but also of interest to private EV-owners in France, though the latter 2 are not the main stakeholders targeted in this project.
+
 
 To answer all these questions, I will be calculating the following set of metrics:
 
@@ -23,8 +25,14 @@ To answer all these questions, I will be calculating the following set of metric
 6. Quick overview of what plugs serve which EV models and contrast plug availability to recent EV ownership / sales data in France to calculate best served models and least served models.
 
 
-Finally: Display everything in a PowerBI + Tableau dashboard that provides a quick and easy way to absorb the findings and drill into the data / metrics.
+Finally: Display everything in a PowerBI dashboard that provides a quick and easy way to absorb the findings and drill into the data / metrics.
+
+The Project Log.md file in this project's folder will display all the steps (chronologically ordered) from the start of the project to its end. Each step is accompanied with details of it's process and the logic behind it.
+
+Dataset schema is available here (original source): https://schema.data.gouv.fr/etalab/schema-irve-statique/latest/documentation.html
+and also as PDF in the folder, it covers the definition of each column as well as the data type it contains.
 
 Note:
     - I will be doing this exercise twice, once via Excel, and again via SQL (showcasing formulas) to demonstrate my technical capacity.
     - I have included a column dictionary that translates french column names into English for non-french speakers, It can be found in the Cleaned Excel file in a seperate tab.
+    - IMPORTANT: All columns added by me to the dataset will have their headers coloured yellow, Work was mainly kept to these columns unless otherwise stated in the log.
