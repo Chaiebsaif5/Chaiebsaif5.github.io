@@ -27,7 +27,7 @@ To answer all these questions, I will be calculating the following set of metric
 
 Finally: Display everything in a PowerBI dashboard that provides a quick and easy way to absorb the findings and drill into the data / metrics.
 
-The Project Log.md file in this project's folder will display all the steps (chronologically ordered) from the start of the project to its end. Each step is accompanied with details of it's process and the logic behind it.
+# The Project Log.md file in this project's folder will display all the steps (chronologically ordered) from the start of the project to its end. Each step is accompanied with details of it's process and the logic behind it. The document is quite long and thorough and as such it is recommend it to navigate it via the search function to the steps that are of interest to you.
 
 Dataset schema is available here (original source): https://schema.data.gouv.fr/etalab/schema-irve-statique/latest/documentation.html
 and also as PDF in the folder, it covers the definition of each column as well as the data type it contains.
@@ -36,3 +36,5 @@ Note:
     - I will be doing this exercise twice, once via Excel, and again via SQL (showcasing formulas) to demonstrate my technical capacity.
     - I have included a column dictionary that translates french column names into English for non-french speakers, It can be found in the Cleaned Excel file in a seperate tab.
     - IMPORTANT: All columns added by me to the dataset will have their headers coloured yellow, Work was mainly kept to these columns unless otherwise stated in the log.
+
+Key skills highlighted in this project: Excel (Advanced formulas, Pivot tables, PowerQuery), Data analysis, documentation and management, PowerBI, Insights extraction and synthesis.

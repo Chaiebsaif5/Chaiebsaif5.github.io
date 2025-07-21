@@ -169,10 +169,18 @@ The script also creates two additional classification columns:
 
 -column BJ: specifically flags any entry that mentions an "occupation" charge—a fee for occupying the charging bay beyond the actual charging session.
 
+- Column A, Column D and column G: Standardised company names to avoid splitting the data across multiple name varieties, such as: 
+"TotalEnergies Marketing France" and "TotalEnergies Charging Services".
+( This step was completed in the "Inclusive scenario dataset as well, more on this below).
 
 ## 3. Defining and calculating the metrics:
 
 The first step in our exploratory data analysis is to define a set of metrics that encapsulates key information communicated by our dataset. These metrics are oriented towards business uses, whether they be already estabilished in the French EV market or are exploring it, the French government but also of interest to private EV-owners in France, though the latter 2 are not the main stakeholders targeted in this project.
+
+
+    Note: All these metrics will be calculated twice, once under a "strict" scenario using our cleaned and vetted dataset (that has all the critical columns filled out and is standardised) and again under an "inclusive" scenario that just uses the overall dataset as is from the source with limited standardisation (such as making sure a company mentions are all unified under one name rather than x varieties).
+
+    ==> The use of the 2 scenarios is to highlight the best scope for each metric, some metrics are less affected by the missing information in the columns than others. For example, Market Share Breakdown results will be valid even in the "Inclusive" scenario and they will be highlighted in the Dashboard.
 
 # a. Market Share breakdown:
 
@@ -196,3 +204,4 @@ Anothor consideration is that the share of the market calculated differs signifi
      - By operator.
      - By data owner.
 
+==> I did a similar calculation in the overall (not cleaned) dataset to review if the subset results match the overall or not
