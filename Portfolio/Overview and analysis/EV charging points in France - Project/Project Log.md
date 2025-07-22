@@ -173,6 +173,12 @@ The script also creates two additional classification columns:
 "TotalEnergies Marketing France" and "TotalEnergies Charging Services".
 ( This step was completed in the "Inclusive scenario dataset as well, more on this below).
 
+all names changed are saved in a sperate tab called "Name Standardisation" in their respective tables.
+
+    - Standardised 209 names in Column A.
+    - Standardised 27 names in Column D.
+    - Standardised 27 names in Column G.
+
 ## 3. Defining and calculating the metrics:
 
 The first step in our exploratory data analysis is to define a set of metrics that encapsulates key information communicated by our dataset. These metrics are oriented towards business uses, whether they be already estabilished in the French EV market or are exploring it, the French government but also of interest to private EV-owners in France, though the latter 2 are not the main stakeholders targeted in this project.
@@ -192,9 +198,9 @@ Anothor consideration is that the share of the market calculated differs signifi
 
      A.1.From Station ownership PoV:
 
-     - By commerical network.
-     - By manager.
-     - By operator.
+     - By commerical network. 
+     - By manager. -- Calculated
+     - By operator. -- Calculated
      - By data owner.
 
      A.2. From Number of charging points POV:
