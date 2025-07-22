@@ -88,7 +88,7 @@ How? Use lat/long to compute each station’s distance to its nearest neighbor (
 
 Insight: Detect clusters vs gaps even within well‑served departments.
 
-11. Correlation Matrix of Key Variables
+# 11. Correlation Matrix of Key Variables
 Why? See which factors most strongly co‑vary—e.g., does higher average price correlate with larger station size? Or does accessibility score correlate with network size?
 
 How? Compute Pearson or Spearman correlations among numeric fields (nbre_pdc, Price_1, Accessibility Score, station density, etc.).

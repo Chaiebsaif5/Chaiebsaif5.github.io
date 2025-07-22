@@ -210,4 +210,4 @@ Anothor consideration is that the share of the market calculated differs signifi
      - By operator.
      - By data owner.
 
-==> I did a similar calculation in the overall (not cleaned) dataset to review if the subset results match the overall or not
+==> I did a similar calculation in the overall (not cleaned) dataset to review if the subset results match the overall or not, the intention of this comparison is to highlight priority targets to backfill the missing data for.
