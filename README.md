@@ -28,9 +28,9 @@ Note: Each project has a README file that covers the technical stack used in it 
 
 -- The reason for this structure is to try and group items by skill rather than project for recruiters to quickly find examples of what skill they're looking for --
 
-## Current projects list
+## 4.Current projects list
 
-1. Full-stack EV Infrastructure Market Analysis project using SQL/Excel + Power BI/Tableau (French to English)
+1. Full-stack EV Infrastructure Market Analysis project using Excel + Power BI (French to English).
 
 
 ## License
