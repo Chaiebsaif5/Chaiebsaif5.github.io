@@ -198,16 +198,18 @@ Anothor consideration is that the share of the market calculated differs signifi
 
      A.1.From Station ownership PoV:
 
-     - By commerical network. 
+     - By commerical network. -- Calculated
      - By manager. -- Calculated
      - By operator. -- Calculated
-     - By data owner.
+     - By data owner. -- Calculated
 
      A.2. From Number of charging points POV:
 
-     - By commerical network.
-     - By manager.
-     - By operator.
-     - By data owner.
+     - By commerical network. -- Calculated
+     - By manager. -- Calculated
+     - By operator. -- Calculated
+     - By data owner. -- Calculated
 
 ==> I did a similar calculation in the overall (not cleaned) dataset to review if the subset results match the overall or not, the intention of this comparison is to highlight priority targets to backfill the missing data for.
+
+The overall uncleaned data market shares are available to vue on the dashboard and in the metrics file
