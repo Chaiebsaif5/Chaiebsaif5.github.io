@@ -2,9 +2,9 @@
 
 If you're reading this my hope is that you're a recruiter who's at least mildly intrested in my application or profile, so thank you for taking the time to explore it.
 
-This portfolio is structured into 3 main folders:
+Each project in this portfolio is structured into 3 main folders:
 
-## 1.Dashboards:
+## 1.Dashboard:
 
 This includes both PowerBI and Tableau dashboards that cover a wide variety of topics (Electric vehicules, +++), The reason why I chose to tackle multiple industries and both private and public sector projects is to showcase the universality and versatility of the insights extraction process and the data analysis and visualisation skills in general.
 
@@ -18,7 +18,7 @@ Please note that not all datasets are in English, some are in French or German. 
 
 ## 3.Overview and analysis:
 
-This folder contains all the analysis work I performed to get from the raw data to the insights displayed on the dashboards. 
+This folder contains all the analysis work I performed for each project to get from the raw data to the insights displayed on the dashboards. 
 My aim from including as much detail about my data & insights analysis process is to showcase to you both my technical skills (Advanced Excel & SQL) as well as the business sense and knowhow that allows me to translate metrics into strategically impactful insights. 
 
 Which then are easily transmitted to the targeted audience through dashbaord visualisations.
