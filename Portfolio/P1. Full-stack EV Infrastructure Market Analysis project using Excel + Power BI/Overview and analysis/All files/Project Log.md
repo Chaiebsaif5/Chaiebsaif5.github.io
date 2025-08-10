@@ -1,4 +1,5 @@
 ## 1. Downloaded and converted the original CSV data into Excel and SQL format.
+ ==> For this project, two analysis were run, one on the clean sample of the data as explained below and another on the overall total dataset without any entry removal, the full dataset only had some limited naming standardisation for the largest company in terms of volume or ranking highest in the metrics I calcualted (top 25).
 ## 2. Cleaned the data:
 
 # a. Checking for errors, missing entries, correct data types and so on.
@@ -198,17 +199,17 @@ Anothor consideration is that the share of the market calculated differs signifi
 
      A.1.From Station ownership PoV:
 
-     - By commerical network. -- Calculated
-     - By manager. -- Calculated
-     - By operator. -- Calculated
-     - By data owner. -- Calculated
+     - By commerical network. 
+     - By manager. 
+     - By operator. 
+     - By data owner.
 
      A.2. From Number of charging points POV:
 
-     - By commerical network. -- Calculated
-     - By manager. -- Calculated
-     - By operator. -- Calculated
-     - By data owner. -- Calculated
+     - By commerical network.
+     - By manager. 
+     - By operator. 
+     - By data owner. 
 
 ==> I did a similar calculation in the overall (not cleaned) dataset to review if the subset results match the overall or not, the intention of this comparison is to highlight priority targets to backfill the missing data for.
 
